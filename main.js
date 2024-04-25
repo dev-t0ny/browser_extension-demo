@@ -3,7 +3,10 @@ const messyBr = document.getElementsByTagName('br');
 const brArray = Array.from(messyBr);  // Convert the live HTMLCollection to a static array
 
 for (let brTag of brArray) {
-    brTag.remove();
+    if (!brTag.parentElement.classList.contains('right-section'))
+    {
+        brTag.remove();
+    }
 }
 
 let classListDOM = document.getElementsByClassName('section-spacing');
