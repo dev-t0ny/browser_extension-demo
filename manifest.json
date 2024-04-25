@@ -1,7 +1,7 @@
 {
     "manifest_version":3,
     "version":"1.0",
-    "name":"Test",
+    "name":"Omnivox Mobile Mimic",
     "content_scripts":[
       {
        "matches":["*://*.omnivox.ca/*"],
@@ -10,8 +10,7 @@
     ],
     "browser_specific_settings": {
       "gecko": {
-        "id": "9a8s7d9ah8sdh102",
-        "strict_min_version": "42.0"
+        "id": "{4a7b1d5c-6b78-4e4a-b1c2-60e5ae17c3e5}"
       }
     }
     
