@@ -1,0 +1,12 @@
+{
+    "manifest_version":2,
+    "version":"1.0",
+    "name":"Test",
+    "content_scripts":[
+      {
+       "matches":["*://*.omnivox.ca/*"],
+       "js":["main.js"]
+      }
+    ]
+  }
+  
