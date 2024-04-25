@@ -1,14 +1,21 @@
 'use strict';
+const messyBr = document.getElementsByTagName('br');
+const brArray = Array.from(messyBr);  // Convert the live HTMLCollection to a static array
+
+for (let brTag of brArray) {
+    brTag.remove();
+}
 
 let classListDOM = document.getElementsByClassName('section-spacing');
 let classListUser = [];
 
 let canvaElement = document.createElement('canvas');
 canvaElement.id = 'myChart';
-canvaElement.width = '1000';
+canvaElement.width = '1200';
 canvaElement.height = '400';
-canvaElement.style = 'position: relative;';
-document.getElementsByClassName('cvirContenuCVIR')[0].appendChild(canvaElement);
+canvaElement.style = 'margin-bottom:auto; margin-left:25rem;';
+
+document.getElementsByTagName('body')[0].appendChild(canvaElement);
 
 if (classListDOM.length != 0) {
     for (let i = 0; i < classListDOM.length; i++) {
@@ -28,9 +35,9 @@ if (classListDOM.length != 0) {
     const maxValue = Math.max(...data.map(item => parseInt(item.grade))) + 10;
 
     // Settings for the chart
-    const chartWidth = 1000; 
+    const chartWidth = 1200; 
     const barWidth = 50; 
-    const barSpacing = 50; 
+    const barSpacing = 80; 
     const chartHeight = 400;
     const scaleFactor = (chartHeight - 50) / maxValue;
     const baseHeight = chartHeight - 30;
