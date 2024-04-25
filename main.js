@@ -13,7 +13,7 @@ let canvaElement = document.createElement('canvas');
 canvaElement.id = 'myChart';
 canvaElement.width = '1200';
 canvaElement.height = '400';
-canvaElement.style = 'margin-bottom:auto; margin-left:25rem;';
+canvaElement.style = 'margin-bottom:auto; margin-left:25rem; padding-bottom:2rem;';
 
 document.getElementsByTagName('body')[0].appendChild(canvaElement);
 
