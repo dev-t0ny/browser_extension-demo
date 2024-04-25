@@ -7,6 +7,13 @@
        "matches":["*://*.omnivox.ca/*"],
        "js":["main.js"]
       }
-    ]
+    ],
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "9a8s7d9ah8sdh102",
+        "strict_min_version": "42.0"
+      }
+    }
+    
   }
   
