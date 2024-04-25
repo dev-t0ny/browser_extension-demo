@@ -2,10 +2,14 @@
     "manifest_version":3,
     "version":"1.1",
     "name":"Omnivox Mobile Mimic",
+    "permissions":
+    [
+      "storage"
+    ],
     "content_scripts":[
       {
        "matches":["*://*.omnivox.ca/*"],
-       "js":["main.js"]
+       "js":["content.js"]
       }
     ],
     "browser_specific_settings": {

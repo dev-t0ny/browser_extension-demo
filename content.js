@@ -1,4 +1,8 @@
 'use strict';
+
+
+document.addEventListener('DOMContentLoaded', () => { alert('TEST');})
+
 const messyBr = document.getElementsByTagName('br');
 const brArray = Array.from(messyBr);  // Convert the live HTMLCollection to a static array
 
@@ -12,11 +16,13 @@ for (let brTag of brArray) {
 let classListDOM = document.getElementsByClassName('section-spacing');
 let classListUser = [];
 
+
+
 let canvaElement = document.createElement('canvas');
 canvaElement.id = 'myChart';
 canvaElement.width = '1200';
 canvaElement.height = '400';
-canvaElement.style = 'margin-bottom:auto; margin-left:25rem; padding-bottom:2rem;';
+canvaElement.style = 'margin-bottom:auto; margin-left:25rem; padding-bottom:rem; visibility: visible;';
 
 document.getElementsByTagName('body')[0].appendChild(canvaElement);
 
@@ -96,11 +102,16 @@ if (classListDOM.length != 0) {
     ctx.moveTo(40, baseHeight);
     ctx.lineTo(chartWidth-100, baseHeight);
     ctx.stroke();
-
-
 }
 
 
+    // Listen for messages from the popup script
+    browser.runtime.onMessage.addListener((message) => {
+        if (message.command === "toggle-chart") {
+            // Toggle visibility based on current state
+            canvaElement.style.visibility = (canvaElement.style.visibility === 'visible') ? 'hidden' : 'visible';
+        }
+    });
 
 
 
