@@ -24,4 +24,5 @@ Contributions are always welcome!
 
 ## Screenshots
 
-![App Screenshot](https://github.com/dev-t0ny/omnivox-mobile-grades/assets/79669121/8e32a58d-2ffd-4b23-a3b0-41decb53cd53)
+![App Screenshot](https://github.com/dev-t0ny/omnivox-enhancer/assets/79669121/4bc4aa8c-81c3-468c-a5fb-270de1a47dbc)
+
