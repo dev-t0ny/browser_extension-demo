@@ -1,4 +1,4 @@
-# Omnivox mobile port Extension
+# Omnivox Enhancer
 
 This browser extension ports some Omnivox Mobile exclusive features.
 ## Features
