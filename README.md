@@ -24,5 +24,4 @@ Contributions are always welcome!
 
 ## Screenshots
 
-![App Screenshot](https://github.com/dev-t0ny/omnivox-enhancer/assets/79669121/4bc4aa8c-81c3-468c-a5fb-270de1a47dbc)
-
+![App Screenshot](https://github.com/dev-t0ny/omnivox-enhancer/assets/79669121/a012841e-c2bb-4f71-b155-1d9d533eca55)
