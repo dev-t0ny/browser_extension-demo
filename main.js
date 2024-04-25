@@ -5,17 +5,18 @@ let classListUser = [];
 
 let canvaElement = document.createElement('canvas');
 canvaElement.id = 'myChart';
-canvaElement.width = '500';
+canvaElement.width = '1000';
 canvaElement.height = '400';
 canvaElement.style = 'position: relative;';
-document.getElementsByClassName('classes-wrapper')[0].appendChild(canvaElement);
+document.getElementsByClassName('cvirContenuCVIR')[0].appendChild(canvaElement);
 
 if (classListDOM.length != 0) {
     for (let i = 0; i < classListDOM.length; i++) {
         classListUser.push(
             {
                 name: classListDOM[i].getElementsByClassName('card-panel-title')[0].textContent,
-                grade: classListDOM[i].getElementsByClassName('pourcentage')[0].textContent
+                grade: classListDOM[i].getElementsByClassName('pourcentage')[0].textContent,
+                average: classListDOM[i].getElementsByClassName('note-principale')[1].textContent
             });
     }
     // Get the canvas element and its context
@@ -24,61 +25,68 @@ if (classListDOM.length != 0) {
 
     const data = classListUser;
     // Calculate the maximum grade to determine chart scaling
-    const maxValue = Math.max(...data.map(item => parseInt(item.grade))) + 10; 
+    const maxValue = Math.max(...data.map(item => parseInt(item.grade))) + 10;
 
     // Settings for the chart
-    const chartWidth = 600;  
-    const barWidth = 50;
-    const barSpacing = 30;
-    const chartHeight = 400;  
-    const scaleFactor = (chartHeight - 50) / maxValue;  
-    const baseHeight = chartHeight - 30; 
+    const chartWidth = 1000; 
+    const barWidth = 50; 
+    const barSpacing = 50; 
+    const chartHeight = 400;
+    const scaleFactor = (chartHeight - 50) / maxValue;
+    const baseHeight = chartHeight - 30;
 
     // Draw bars
     data.forEach((item, index) => {
 
-        let currentGrade = parseInt(item.grade.substring(0,2));
-        if (currentGrade > 60)
-        {
-            ctx.fillStyle = '#4A90E2'; 
+        let currentGrade = parseInt(item.grade.substring(0, 2));
+        if (currentGrade > 60) {
+            ctx.fillStyle = '#4A90E2';
         }
-        else if (currentGrade > 45)
-        {
+        else if (currentGrade > 45) {
             ctx.fillStyle = '#FFBF00';
         }
-        else
-        {
+        else {
             ctx.fillStyle = '#C70039';
         }
-        
+
         const barHeight = parseInt(item.grade) * scaleFactor;
-        const x = 40 + index * (barWidth + barSpacing);  
+        const x = 60 + index * (barWidth + barSpacing);
         const y = baseHeight - barHeight;
 
         ctx.fillRect(x, y, barWidth, barHeight);
 
         // Add labels over each bar
-        ctx.fillStyle = '#000'; 
+        ctx.fillStyle = '#000';
         ctx.textAlign = 'center';
         ctx.fillText(item.grade, x + barWidth / 2, baseHeight - 50);
 
         // Add labels below each bar
-        ctx.fillStyle = '#000'; 
+        ctx.fillStyle = '#000';
         ctx.textAlign = 'center';
-        ctx.fillText(item.name.substring(10, 15), x + barWidth / 2, baseHeight + 20);
+        ctx.fillText(item.name.substring(10, 15), x + barWidth, baseHeight + 20);
+
+        const currentAverage = item.average.substring(0, 2);
+
+        //if there's an average, add a column
+        if (!currentAverage.includes('-')) {
+            ctx.fillStyle = '#808080';
+            const averageBarHeight = parseInt(currentAverage) * scaleFactor;
+            const averageX = x + barWidth + 10;
+            ctx.fillRect(averageX, baseHeight - averageBarHeight, barWidth-20, averageBarHeight);
+            ctx.fillStyle = '#000';
+            ctx.fillText(currentAverage + '%', averageX + 15, baseHeight - 50);
+        }
     });
-
-    // Draw X axis
     ctx.beginPath();
-    ctx.moveTo(30, baseHeight);
-    ctx.lineTo(chartWidth - 10, baseHeight);
-    ctx.stroke();
-
-    // Draw Y axis
-    ctx.beginPath();
-    ctx.moveTo(40, 30); 
+    ctx.moveTo(40, 30);
     ctx.lineTo(40, baseHeight);
     ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(40, baseHeight);
+    ctx.lineTo(chartWidth-100, baseHeight);
+    ctx.stroke();
+
 
 }
 
