@@ -1,3 +1,5 @@
+'use strict';
+
 let classListDOM = document.getElementsByClassName('section-spacing');
 let classListUser = [];
 
@@ -5,7 +7,7 @@ let canvaElement = document.createElement('canvas');
 canvaElement.id = 'myChart';
 canvaElement.width = '500';
 canvaElement.height = '400';
-canvaElement.style = 'position: relative;'
+canvaElement.style = 'position: relative;';
 document.getElementsByClassName('classes-wrapper')[0].appendChild(canvaElement);
 
 if (classListDOM.length != 0) {
