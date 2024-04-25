@@ -1,7 +1,12 @@
+# Omnivox mobile port Extension
 
-# Omnivox mobile grading
+This browser extension ports some Omnivox Mobile exclusive features.
+## Features
 
-This browser extension ports the grading charts used in the mobile version of omnivox.
+- Grading chart 
+- User ID showned in footer TODO
+- Themes TODO
+
 
 
 ## Authors
@@ -15,3 +20,7 @@ Contributions are always welcome!
 
 
 
+
+## Screenshots
+
+![App Screenshot](https://github.com/dev-t0ny/omnivox-mobile-grades/assets/79669121/8e32a58d-2ffd-4b23-a3b0-41decb53cd53)
