@@ -1,7 +1,7 @@
 
 # Omnivox mobile grading
 
-This ports the grading charts used in the mobile version of omnivox.
+This browser extension ports the grading charts used in the mobile version of omnivox.
 
 
 ## Authors
