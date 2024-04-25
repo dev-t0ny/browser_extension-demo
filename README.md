@@ -1,4 +1,4 @@
-# Omnivox mobile grading
+# Omnivox mobile port Extension
 
 This browser extension ports some Omnivox Mobile exclusive features.
 ## Features
