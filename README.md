@@ -3,9 +3,10 @@
 This browser extension ports some Omnivox Mobile exclusive features.
 ## Features
 
-- Grading chart 
-- User ID showned in footer TODO
-- Themes TODO
+- [X] Grading chart 
+- [ ] Useful informations in footer
+- [ ] Custom themes
+- [ ] Distracting element remover
 
 
 
