@@ -1,6 +1,6 @@
 {
     "manifest_version":3,
-    "version":"1.0",
+    "version":"1.1",
     "name":"Omnivox Mobile Mimic",
     "content_scripts":[
       {
@@ -12,6 +12,11 @@
       "gecko": {
         "id": "{4a7b1d5c-6b78-4e4a-b1c2-60e5ae17c3e5}"
       }
+    },
+    "action": {
+      "default_icon": "icons/omnivox-enhancer.png",
+      "default_title": "Omnivox Enhancer",
+      "default_popup": "popup/settings.html"
     }
     
   }
