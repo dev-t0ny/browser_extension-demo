@@ -103,7 +103,7 @@ if (classListDOM.length != 0) {
     ctx.lineTo(chartWidth - 100, baseHeight);
     ctx.stroke();
 }
-
+secCentre.style.flexDirection = 'column';
 /**
  * Sets canva's visibility
  * @param {*} e promis
@@ -112,11 +112,11 @@ function setVisibility(e) {
     console.log(e);
     if (e.chkState) {
         canvaElement.style.display = 'inline';
-        secCentre.style.flexDirection = 'column';
+
     }
     else {
         canvaElement.style.display = 'none';
-        secCentre.style.flexDirection = 'row';
+ 
     }
 }
 /**
@@ -136,7 +136,7 @@ function setSideSections(e) {
         }
         
         let secCentre = document.getElementsByClassName('section-centre')[0];
-        secCentre.style.flexDirection = 'row';
+
         secCentre.style.width = '50rem';
         cards.style.display = 'inline';
         cards.style.gap = '0';
@@ -154,7 +154,6 @@ function setSideSections(e) {
         }
 
         let secCentre = document.getElementsByClassName('section-centre')[0];
-        secCentre.style.flexDirection = 'column'; 
         secCentre.style.width = 'auto';
         cards.style.display = 'grid';
         cards.style.gridTemplateColumns = 'auto auto auto auto';
@@ -175,7 +174,7 @@ browser.runtime.onMessage.addListener((message) => {
     if (message.command === 'toggle-chart') {
         // Toggle visibility based on current state
         canvaElement.style.display = (canvaElement.style.display === 'inline') ? 'none' : 'inline';
-        secCentre.style.flexDirection = (secCentre.style.display === 'column') ? 'row' : 'column';
+
     }
     else if (message.command === 'toggle-useless') {
         let secCentre = document.getElementsByClassName('section-centre')[0];
@@ -194,7 +193,7 @@ browser.runtime.onMessage.addListener((message) => {
         
         if (rightSec[0].style.display === 'inline')
         {
-            secCentre.style.flexDirection = 'row';
+
             cards.style.marginLeft = '2rem';
             cards.style.marginRight = '0';
             secCentre.style.width = '50rem';
@@ -204,7 +203,7 @@ browser.runtime.onMessage.addListener((message) => {
         }
         else
         {
-            secCentre.style.flexDirection = 'column';
+
             cards.style.marginLeft = '0';
             cards.style.marginRight = 'auto';
             secCentre.style.width = 'auto';
