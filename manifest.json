@@ -1,6 +1,6 @@
 {
     "manifest_version":3,
-    "version":"1.21",
+    "version":"1.22",
     "name":"Omnivox Enhancer",
     "content_scripts":[
       {

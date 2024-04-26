@@ -5,6 +5,7 @@ const messyBr = document.getElementsByTagName('br');
 const brArray = Array.from(messyBr);  // Convert the live HTMLCollection to a static array
 const rightSec = document.getElementsByClassName('section-droite');
 const leftSec = document.getElementsByClassName('parent-menu-gauche');
+
 for (let brTag of brArray) {
     if (!brTag.parentElement.classList.contains('right-section')) {
         brTag.remove();
