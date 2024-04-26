@@ -28,7 +28,8 @@ Contributions are always welcome!
 ## Screenshots
 
 ![App Screenshot](https://github.com/dev-t0ny/omnivox-enhancer/assets/79669121/a012841e-c2bb-4f71-b155-1d9d533eca55)
-![App Screenshot](https://github.com/dev-t0ny/omnivox-enhancer/assets/79669121/1776f95d-990d-4745-b74c-cb3350bda507)
+![App Screenshot](https://github.com/dev-t0ny/omnivox-enhancer/assets/79669121/b452b5cc-f9b4-41bc-819c-e0a090ce4b7a)
+
 
 
 ## How to download
