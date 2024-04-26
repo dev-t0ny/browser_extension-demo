@@ -124,7 +124,7 @@ function setVisibility(e) {
  * @param {*} e event
  */
 function setSideSections(e) {
-    console.log(e);
+    //user preference is true (VISIBLE)
     if (e.chkUseless) {
         for (let element of rightSec)
         {
@@ -141,8 +141,9 @@ function setSideSections(e) {
         cards.style.display = 'inline';
         cards.style.gap = '0';
         document.querySelector('.classes-titre').style.display = 'inline';
-
+        document.querySelector('.id-service_CVIP').style.display = 'inline-block';
     }
+    //user preference is false (HIDDEN)
     else {
         for (let element of rightSec)
         {
@@ -175,6 +176,7 @@ function setSideSections(e) {
         cards.style.gridTemplateColumns = gridTemplate;
         cards.style.gap = '1.5rem';
         document.querySelector('.classes-titre').style.display = 'none';
+        document.querySelector('.id-service_CVIP').style.display = 'none';
     }
 }
 
@@ -187,28 +189,34 @@ prendreState.then(setSideSections, (e) => { console.log(e);});
 
 // Listen for messages from the popup script
 browser.runtime.onMessage.addListener((message) => {
+
+    //user has checked/unchecked the chart chkbox
     if (message.command === 'toggle-chart') {
         // Toggle visibility based on current state
         canvaElement.style.display = (canvaElement.style.display === 'inline') ? 'none' : 'inline';
 
     }
+
+    //User has checked/unchecked the sections cleaner chkbox
     else if (message.command === 'toggle-useless') {
         let secCentre = document.getElementsByClassName('section-centre')[0];
 
+        //styling
         for (let element of rightSec)
         {
             element.style.display = (element.style.display === 'inline') ? 'none' : 'inline';
         }
 
-        
-
         for (let element of leftSec)
         {
             element.style.display = (element.style.display === 'inline') ? 'none' : 'inline';
         }
-        
+
+        //chkbox is CHECKED (sections are still visible)
         if (rightSec[0].style.display === 'inline')
         {
+
+            document.querySelector('.id-service_CVIP').style.display = 'inline-block';
 
             cards.style.marginLeft = '2rem';
             cards.style.marginRight = '0';
@@ -217,14 +225,20 @@ browser.runtime.onMessage.addListener((message) => {
             cards.style.gap = '0';
             document.querySelector('.classes-titre').style.display = 'inline';
         }
+
+        //chkbox is UNCHECKED (sections are not visible)
         else
         {
+            //removes the lea button, which is useless on this page
+            document.querySelector('.id-service_CVIP').style.display = 'none';
 
             cards.style.marginLeft = '0';
             cards.style.marginRight = 'auto';
             secCentre.style.width = 'auto';
             cards.style.display = 'grid';
             let gridTemplate;
+
+            //responsive design
             if (window.innerWidth > 1454)
             {
                 gridTemplate = 'auto auto auto auto';
