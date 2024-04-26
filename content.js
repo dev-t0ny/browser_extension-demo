@@ -18,9 +18,13 @@ let canvaElement = document.createElement('canvas');
 canvaElement.id = 'myChart';
 canvaElement.width = '1200';
 canvaElement.height = '400';
-canvaElement.style = 'margin-bottom:auto; margin-left:25rem; padding-bottom:rem; visibility: visible;';
-
-document.getElementsByTagName('body')[0].appendChild(canvaElement);
+canvaElement.style = 'visibility: visible;';
+let secCentre = document.getElementsByClassName('section-centre')[0];
+let cards = document.getElementsByClassName('classes-wrapper')[0];
+secCentre.style.alignItems = 'start';
+cards.style.marginLeft = 'auto';
+cards.style.marginRight = 'auto';
+secCentre.appendChild(canvaElement);
 
 if (classListDOM.length != 0) {
     for (let i = 0; i < classListDOM.length; i++) {
@@ -121,6 +125,10 @@ function setSideSections(e) {
         {
             element.style.display = 'inline';
         }
+        
+        let secCentre = document.getElementsByClassName('section-centre')[0];
+        secCentre.style.flexDirection = 'column';
+            
 
     }
     else {
@@ -133,6 +141,8 @@ function setSideSections(e) {
             element.style.display = 'none';
         }
 
+        let secCentre = document.getElementsByClassName('section-centre')[0];
+        secCentre.style.flexDirection = 'row'; 
     }
 }
 
@@ -150,19 +160,28 @@ browser.runtime.onMessage.addListener((message) => {
         canvaElement.style.visibility = (canvaElement.style.visibility === 'visible') ? 'hidden' : 'visible';
     }
     else if (message.command === "toggle-useless") {
-
+        let secCentre = document.getElementsByClassName('section-centre')[0];
 
         for (let element of rightSec)
         {
             element.style.display = (element.style.display === 'inline') ? 'none' : 'inline';
         }
 
+        
+
         for (let element of leftSec)
         {
             element.style.display = (element.style.display === 'inline') ? 'none' : 'inline';
         }
         
-
+        if (rightSec[0].style.display === "inline")
+        {
+            secCentre.style.flexDirection = 'column';
+        }
+        else
+        {
+            secCentre.style.flexDirection = 'row';
+        }
 
     }
 });
