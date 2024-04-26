@@ -1,14 +1,26 @@
 'use strict';
+/* global browser */
+
 const chkBox = document.getElementById('chkChart');
 const chkUseless = document.getElementById('chkUseless');
+/**
+ * Sets chart checkBox
+ * @param {*} e promise
+ */
 function setChkState(e) {
     chkBox.checked = e.chkState;
 }
-
+/**
+ * Sets useless infos checkBox
+ * @param {*} e promise
+ */
 function setChkUseless(e) {
     chkUseless.checked = e.chkUseless;
 }
-
+/**
+ * 
+ * @param {*} e promise error
+ */
 function error(e) {
     console.log(e);
 }
@@ -22,18 +34,18 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if (chkBox.checked) {
             let sendPromise = browser.storage.sync.set({ 'chkState': true });
-            sendPromise.then((e) => { console.log('successfuly written to ' + e) }, error);
+            sendPromise.then((e) => { console.log('successfuly written to ' + e); }, error);
         }
         else {
             let sendPromise = browser.storage.sync.set({ 'chkState': false });
-            sendPromise.then((e) => { console.log('successfuly written to ' + e) }, error);
+            sendPromise.then((e) => { console.log('successfuly written to ' + e); }, error);
         }
 
         // Send a message to the content script to toggle the chart
         browser.tabs.query({ active: true, currentWindow: true })
             .then((tabs) => {
                 browser.tabs.sendMessage(tabs[0].id, {
-                    command: "toggle-chart"
+                    command: 'toggle-chart'
                 });
             });
     });
@@ -45,19 +57,19 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if (chkUseless.checked) {
             let sendPromise = browser.storage.sync.set({ 'chkUseless': true });
-            sendPromise.then((e) => { console.log('successfuly written to ' + e) }, error);
+            sendPromise.then((e) => { console.log('successfuly written to ' + e); }, error);
         }
         else {
             let sendPromise = browser.storage.sync.set({ 'chkUseless': false });
-            sendPromise.then((e) => { console.log('successfuly written to ' + e) }, error);
+            sendPromise.then((e) => { console.log('successfuly written to ' + e); }, error);
         }
 
         // Send a message to the content script to toggle the chart
         browser.tabs.query({ active: true, currentWindow: true })
             .then((tabs) => {
                 browser.tabs.sendMessage(tabs[0].id, {
-                    command: "toggle-useless"
+                    command: 'toggle-useless'
                 });
             });
-    })
+    });
 });

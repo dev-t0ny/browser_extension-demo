@@ -1,5 +1,5 @@
 'use strict';
-
+/* global browser */
 
 const messyBr = document.getElementsByTagName('br');
 const brArray = Array.from(messyBr);  // Convert the live HTMLCollection to a static array
@@ -18,11 +18,11 @@ let canvaElement = document.createElement('canvas');
 canvaElement.id = 'myChart';
 canvaElement.width = '1200';
 canvaElement.height = '400';
-canvaElement.style = 'visibility: visible;';
+canvaElement.style = 'display: inline;';
 let secCentre = document.getElementsByClassName('section-centre')[0];
 let cards = document.getElementsByClassName('classes-wrapper')[0];
 secCentre.style.alignItems = 'start';
-cards.style.marginLeft = 'auto';
+cards.style.marginLeft = '0';
 cards.style.marginRight = 'auto';
 secCentre.appendChild(canvaElement);
 
@@ -104,16 +104,25 @@ if (classListDOM.length != 0) {
     ctx.stroke();
 }
 
+/**
+ * Sets canva's visibility
+ * @param {*} e promis
+ */
 function setVisibility(e) {
     console.log(e);
     if (e.chkState) {
-        canvaElement.style.visibility = 'visible';
+        canvaElement.style.display = 'inline';
+        secCentre.style.flexDirection = 'column';
     }
     else {
-        canvaElement.style.visibility = 'hidden';
+        canvaElement.style.display = 'none';
+        secCentre.style.flexDirection = 'row';
     }
 }
-
+/**
+ * Sets side sections visibility
+ * @param {*} e event
+ */
 function setSideSections(e) {
     console.log(e);
     if (e.chkUseless) {
@@ -127,8 +136,11 @@ function setSideSections(e) {
         }
         
         let secCentre = document.getElementsByClassName('section-centre')[0];
-        secCentre.style.flexDirection = 'column';
-            
+        secCentre.style.flexDirection = 'row';
+        secCentre.style.width = '50rem';
+        cards.style.display = 'inline';
+        cards.style.gap = '0';
+        document.querySelector('.classes-titre').style.display = 'inline';
 
     }
     else {
@@ -142,24 +154,30 @@ function setSideSections(e) {
         }
 
         let secCentre = document.getElementsByClassName('section-centre')[0];
-        secCentre.style.flexDirection = 'row'; 
+        secCentre.style.flexDirection = 'column'; 
+        secCentre.style.width = 'auto';
+        cards.style.display = 'grid';
+        cards.style.gridTemplateColumns = 'auto auto auto auto';
+        cards.style.gap = '1.5rem';
+        document.querySelector('.classes-titre').style.display = 'none';
     }
 }
 
 let prendreState = browser.storage.sync.get('chkState');
-prendreState.then(setVisibility, (e) => { console.log(e)});
+prendreState.then(setVisibility, (e) => { console.log(e);});
 
 prendreState = browser.storage.sync.get('chkUseless');
-prendreState.then(setSideSections, (e) => { console.log(e)});
+prendreState.then(setSideSections, (e) => { console.log(e);});
 
 
 // Listen for messages from the popup script
 browser.runtime.onMessage.addListener((message) => {
-    if (message.command === "toggle-chart") {
+    if (message.command === 'toggle-chart') {
         // Toggle visibility based on current state
-        canvaElement.style.visibility = (canvaElement.style.visibility === 'visible') ? 'hidden' : 'visible';
+        canvaElement.style.display = (canvaElement.style.display === 'inline') ? 'none' : 'inline';
+        secCentre.style.flexDirection = (secCentre.style.display === 'column') ? 'row' : 'column';
     }
-    else if (message.command === "toggle-useless") {
+    else if (message.command === 'toggle-useless') {
         let secCentre = document.getElementsByClassName('section-centre')[0];
 
         for (let element of rightSec)
@@ -174,13 +192,26 @@ browser.runtime.onMessage.addListener((message) => {
             element.style.display = (element.style.display === 'inline') ? 'none' : 'inline';
         }
         
-        if (rightSec[0].style.display === "inline")
+        if (rightSec[0].style.display === 'inline')
         {
-            secCentre.style.flexDirection = 'column';
+            secCentre.style.flexDirection = 'row';
+            cards.style.marginLeft = '2rem';
+            cards.style.marginRight = '0';
+            secCentre.style.width = '50rem';
+            cards.style.display = 'inline';
+            cards.style.gap = '0';
+            document.querySelector('.classes-titre').style.display = 'inline';
         }
         else
         {
-            secCentre.style.flexDirection = 'row';
+            secCentre.style.flexDirection = 'column';
+            cards.style.marginLeft = '0';
+            cards.style.marginRight = 'auto';
+            secCentre.style.width = 'auto';
+            cards.style.display = 'grid';
+            cards.style.gridTemplateColumns = 'auto auto auto auto';
+            cards.style.gap = '1.5rem';
+            document.querySelector('.classes-titre').style.display = 'none';
         }
 
     }
