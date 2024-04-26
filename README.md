@@ -6,7 +6,7 @@ This browser extension ports some Omnivox Mobile exclusive features.
 - [X] Grading chart 
 - [ ] Useful informations in footer
 - [ ] Custom themes
-- [ ] Distracting element remover
+- [X] Distracting element remover
 
 
 
