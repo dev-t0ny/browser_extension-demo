@@ -3,10 +3,10 @@
 
 const messyBr = document.getElementsByTagName('br');
 const brArray = Array.from(messyBr);  // Convert the live HTMLCollection to a static array
-
+const rightSec = document.getElementsByClassName('section-droite');
+const leftSec = document.getElementsByClassName('parent-menu-gauche');
 for (let brTag of brArray) {
-    if (!brTag.parentElement.classList.contains('right-section'))
-    {
+    if (!brTag.parentElement.classList.contains('right-section')) {
         brTag.remove();
     }
 }
@@ -40,9 +40,9 @@ if (classListDOM.length != 0) {
     const maxValue = Math.max(...data.map(item => parseInt(item.grade))) + 10;
 
     // Settings for the chart
-    const chartWidth = 1200; 
-    const barWidth = 50; 
-    const barSpacing = 80; 
+    const chartWidth = 1200;
+    const barWidth = 50;
+    const barSpacing = 80;
     const chartHeight = 400;
     const scaleFactor = (chartHeight - 50) / maxValue;
     const baseHeight = chartHeight - 30;
@@ -84,7 +84,7 @@ if (classListDOM.length != 0) {
             ctx.fillStyle = '#808080';
             const averageBarHeight = parseInt(currentAverage) * scaleFactor;
             const averageX = x + barWidth + 10;
-            ctx.fillRect(averageX, baseHeight - averageBarHeight, barWidth-20, averageBarHeight);
+            ctx.fillRect(averageX, baseHeight - averageBarHeight, barWidth - 20, averageBarHeight);
             ctx.fillStyle = '#000';
             ctx.fillText(currentAverage + '%', averageX + 15, baseHeight - 50);
         }
@@ -96,33 +96,76 @@ if (classListDOM.length != 0) {
 
     ctx.beginPath();
     ctx.moveTo(40, baseHeight);
-    ctx.lineTo(chartWidth-100, baseHeight);
+    ctx.lineTo(chartWidth - 100, baseHeight);
     ctx.stroke();
 }
 
 function setVisibility(e) {
     console.log(e);
-    if (e.chkState)
-    {
+    if (e.chkState) {
         canvaElement.style.visibility = 'visible';
     }
-    else 
-    {
+    else {
         canvaElement.style.visibility = 'hidden';
     }
 }
 
-let prendreState = browser.storage.sync.get('chkState');
-prendreState.then(setVisibility, (e)=>{console.log(e)});
-
-
-    // Listen for messages from the popup script
-    browser.runtime.onMessage.addListener((message) => {
-        if (message.command === "toggle-chart") {
-            // Toggle visibility based on current state
-            canvaElement.style.visibility = (canvaElement.style.visibility === 'visible') ? 'hidden' : 'visible';
+function setSideSections(e) {
+    console.log(e);
+    if (e.chkUseless) {
+        for (let element of rightSec)
+        {
+            element.style.display = 'inline';
         }
-    });
+        for (let element of leftSec)
+        {
+            element.style.display = 'inline';
+        }
+
+    }
+    else {
+        for (let element of rightSec)
+        {
+            element.style.display = 'none';
+        }
+        for (let element of leftSec)
+        {
+            element.style.display = 'none';
+        }
+
+    }
+}
+
+let prendreState = browser.storage.sync.get('chkState');
+prendreState.then(setVisibility, (e) => { console.log(e)});
+
+prendreState = browser.storage.sync.get('chkUseless');
+prendreState.then(setSideSections, (e) => { console.log(e)});
+
+
+// Listen for messages from the popup script
+browser.runtime.onMessage.addListener((message) => {
+    if (message.command === "toggle-chart") {
+        // Toggle visibility based on current state
+        canvaElement.style.visibility = (canvaElement.style.visibility === 'visible') ? 'hidden' : 'visible';
+    }
+    else if (message.command === "toggle-useless") {
+
+
+        for (let element of rightSec)
+        {
+            element.style.display = (element.style.display === 'inline') ? 'none' : 'inline';
+        }
+
+        for (let element of leftSec)
+        {
+            element.style.display = (element.style.display === 'inline') ? 'none' : 'inline';
+        }
+        
+
+
+    }
+});
 
 
 
