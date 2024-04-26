@@ -11,6 +11,10 @@ if (leaLanding) {
     leaLandingHandler(secCentre);
 }
 
+
+
+
+
 function leaLandingHandler(secCentre) {
     const messyBr = document.getElementsByTagName('br');
     const brArray = Array.from(messyBr);  // Convert the live HTMLCollection to a static array
@@ -26,6 +30,7 @@ function leaLandingHandler(secCentre) {
     let classListDOM = document.getElementsByClassName('section-spacing');
     let classListUser = [];
 
+    //canva handling
     let canvaElement = document.createElement('canvas');
     canvaElement.id = 'myChart';
     canvaElement.width = '1200';
@@ -147,10 +152,16 @@ function leaLandingHandler(secCentre) {
 
             let secCentre = document.getElementsByClassName('section-centre')[0];
 
+            //sizing
             secCentre.style.width = '50rem';
+
             cards.style.display = 'inline';
             cards.style.gap = '0';
+
+            //'activité dans mes classes'
             document.querySelector('.classes-titre').style.display = 'inline';
+
+            //lea button on left side
             document.querySelector('.id-service_CVIP').style.display = 'inline-block';
         }
         //user preference is false (HIDDEN)
@@ -163,24 +174,30 @@ function leaLandingHandler(secCentre) {
             }
 
             let secCentre = document.getElementsByClassName('section-centre')[0];
+
+            //sizing
             secCentre.style.width = 'auto';
+
+
             cards.style.display = 'grid';
             let gridTemplate;
+            //responsive design
             if (window.innerWidth > 1454) {
                 gridTemplate = 'auto auto auto auto';
             }
-
             else if (window.innerWidth > 1166) {
                 gridTemplate = 'auto auto auto';
             }
             else {
                 gridTemplate = 'auto auto';
             }
-
-
             cards.style.gridTemplateColumns = gridTemplate;
             cards.style.gap = '1.5rem';
+
+            //'activité dans mes classes'
             document.querySelector('.classes-titre').style.display = 'none';
+
+            //lea btn on left side
             document.querySelector('.id-service_CVIP').style.display = 'none';
         }
     }
@@ -219,6 +236,8 @@ function leaLandingHandler(secCentre) {
             if (rightSec[0].style.display === 'inline') {
 
                 document.querySelector('.id-service_CVIP').style.display = 'inline-block';
+                
+
 
                 cards.style.marginLeft = '2rem';
                 cards.style.marginRight = '0';
