@@ -156,7 +156,23 @@ function setSideSections(e) {
         let secCentre = document.getElementsByClassName('section-centre')[0];
         secCentre.style.width = 'auto';
         cards.style.display = 'grid';
-        cards.style.gridTemplateColumns = 'auto auto auto auto';
+        let gridTemplate;
+        if (window.innerWidth > 1454)
+        {
+            gridTemplate = 'auto auto auto auto';
+        }
+
+        else if (window.innerWidth > 1166)
+        {
+            gridTemplate = 'auto auto auto';
+        }
+        else
+        {
+            gridTemplate = 'auto auto';
+        }
+
+
+        cards.style.gridTemplateColumns = gridTemplate;
         cards.style.gap = '1.5rem';
         document.querySelector('.classes-titre').style.display = 'none';
     }
@@ -208,7 +224,23 @@ browser.runtime.onMessage.addListener((message) => {
             cards.style.marginRight = 'auto';
             secCentre.style.width = 'auto';
             cards.style.display = 'grid';
-            cards.style.gridTemplateColumns = 'auto auto auto auto';
+            let gridTemplate;
+            if (window.innerWidth > 1454)
+            {
+                gridTemplate = 'auto auto auto auto';
+            }
+    
+            else if (window.innerWidth > 1166)
+            {
+                gridTemplate = 'auto auto auto';
+            }
+            else
+            {
+                gridTemplate = 'auto auto';
+            }
+    
+    
+            cards.style.gridTemplateColumns = gridTemplate;
             cards.style.gap = '1.5rem';
             document.querySelector('.classes-titre').style.display = 'none';
         }

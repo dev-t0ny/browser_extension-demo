@@ -1,7 +1,7 @@
 {
     "manifest_version":3,
     "version":"1.20",
-    "name":"Omnivox Mobile Mimic",
+    "name":"Omnivox Enhancer",
     "content_scripts":[
       {
        "matches":["*://*.omnivox.ca/*"],
