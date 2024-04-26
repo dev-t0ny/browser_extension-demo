@@ -7,6 +7,9 @@ This browser extension ports some Omnivox Mobile exclusive features.
 - [ ] Useful informations in footer
 - [ ] Custom themes
 - [X] Distracting element remover
+- [ ] Grade faker 
+- [ ] Mio enhancements
+- [ ] Grade calculator
 
 
 
