@@ -1,19 +1,30 @@
 'use strict';
+const chkBox = document.getElementById('chkChart');
+function setChkState(e) {
+    chkBox.checked = e.chkState;
+}
+function error(e) {
+    console.log(e);
+}
 
 window.addEventListener('DOMContentLoaded', () => {
-    const chkBox = document.getElementById('chkChart');
 
-    // Load the saved state from storage and update the checkbox
-    browser.storage.local.get('checkboxState').then(data => {
-        chkBox.checked = data.checkboxState || true; // Default to false if nothing stored
-    });
+    let sendPromise = browser.storage.sync.get('chkState');
+    sendPromise.then(setChkState, error);
 
     chkBox.addEventListener('change', () => {
-        // Save the current state to storage
-        browser.storage.local.set({checkboxState: chkBox.checked});
+
+        if (chkBox.checked) {
+            let sendPromise = browser.storage.sync.set({ 'chkState': true });
+            sendPromise.then((e) => { console.log('successfuly written to ' + e) }, error);
+        }
+        else {
+            let sendPromise = browser.storage.sync.set({ 'chkState': false });
+            sendPromise.then((e) => { console.log('successfuly written to ' + e) }, error);
+        }
 
         // Send a message to the content script to toggle the chart
-        browser.tabs.query({active: true, currentWindow: true})
+        browser.tabs.query({ active: true, currentWindow: true })
             .then((tabs) => {
                 browser.tabs.sendMessage(tabs[0].id, {
                     command: "toggle-chart"

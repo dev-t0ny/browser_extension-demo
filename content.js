@@ -1,8 +1,6 @@
 'use strict';
 
 
-document.addEventListener('DOMContentLoaded', () => { alert('TEST');})
-
 const messyBr = document.getElementsByTagName('br');
 const brArray = Array.from(messyBr);  // Convert the live HTMLCollection to a static array
 
@@ -15,8 +13,6 @@ for (let brTag of brArray) {
 
 let classListDOM = document.getElementsByClassName('section-spacing');
 let classListUser = [];
-
-
 
 let canvaElement = document.createElement('canvas');
 canvaElement.id = 'myChart';
@@ -103,6 +99,21 @@ if (classListDOM.length != 0) {
     ctx.lineTo(chartWidth-100, baseHeight);
     ctx.stroke();
 }
+
+function setVisibility(e) {
+    console.log(e);
+    if (e.chkState)
+    {
+        canvaElement.style.visibility = 'visible';
+    }
+    else 
+    {
+        canvaElement.style.visibility = 'hidden';
+    }
+}
+
+let prendreState = browser.storage.sync.get('chkState');
+prendreState.then(setVisibility, (e)=>{console.log(e)});
 
 
     // Listen for messages from the popup script

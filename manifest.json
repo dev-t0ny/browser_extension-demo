@@ -1,11 +1,7 @@
 {
     "manifest_version":3,
-    "version":"1.1",
+    "version":"1.11",
     "name":"Omnivox Mobile Mimic",
-    "permissions":
-    [
-      "storage"
-    ],
     "content_scripts":[
       {
        "matches":["*://*.omnivox.ca/*"],
@@ -21,7 +17,11 @@
       "default_icon": "icons/omnivox-enhancer.png",
       "default_title": "Omnivox Enhancer",
       "default_popup": "popup/settings.html"
-    }
+    },
+    "permissions": [
+      "storage",
+      "activeTab"
+    ]
     
   }
   
