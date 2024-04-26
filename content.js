@@ -1,18 +1,16 @@
 'use strict';
 /* global browser */
 let secCentre;
-let leaLanding = false;
+
 //checks if this is lea's landing page
 if (document.getElementsByClassName('section-centre')[0]) {
     secCentre = document.getElementsByClassName('section-centre')[0];
-    leaLanding = true;
-}
-if (leaLanding) {
     leaLandingHandler(secCentre);
 }
-
-
-
+else if (document.getElementsByClassName('titrePageLea')[0])
+{
+    leaClassGradeHandler();
+}
 
 
 function leaLandingHandler(secCentre) {
@@ -278,4 +276,25 @@ function leaLandingHandler(secCentre) {
 
         }
     });
+}
+
+
+function leaClassGradeHandler()
+{
+
+    const currentGrade = document.querySelector('.tb-sommaire').textContent.substring(39,46);
+    const needGrade = document.createElement('p');
+    let regex = /(\d+(\.\d+)?)\/(\d+(\.\d+)?)/;
+    let grades = currentGrade.match(regex);
+    needGrade.textContent = '*Il te faut encore au moins ' + (60 - parseInt(grades[1]).toFixed(2)).toString() + ' points pour passer le cours*';
+    needGrade.style.backgroundColor = '#FDDB8E';
+    needGrade.style.color = '#333333';
+    needGrade.style.margin = '1rem'
+    needGrade.style.marginLeft = '10rem'
+    
+    console.log(needGrade);
+    document.querySelector('.tb-sommaire').appendChild(needGrade);
+
+
+
 }
