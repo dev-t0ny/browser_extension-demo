@@ -28,3 +28,7 @@ Contributions are always welcome!
 ## Screenshots
 
 ![App Screenshot](https://github.com/dev-t0ny/omnivox-enhancer/assets/79669121/a012841e-c2bb-4f71-b155-1d9d533eca55)
+
+
+## How to download
+2024-04-26: The extension was launched on Mozilla Firefox: https://addons.mozilla.org/en-US/firefox/addon/omnivox-enhancer/
