@@ -203,6 +203,7 @@ function leaLandingHandler(secCentre) {
         }
     }
 
+    //browser storage check
     let prendreState = browser.storage.sync.get('chkState');
     prendreState.then(setVisibility, (e) => { console.log(e); });
 
@@ -308,6 +309,37 @@ function leaClassGradeHandler()
 
     row.appendChild(needGrade);
     gradeTable.firstChild.children[2].firstChild.appendChild(row);
+    needGrade.style.display = 'none';
+
+
+    //browser storage check
+    let prendreState = browser.storage.sync.get('chkHelper');
+    prendreState.then(setVisibility, (e) => { console.log(e); });
+
+    /**
+     * Sets grade helper visibility
+     */
+    function setVisibility(){
+        needGrade.style.display = (needGrade.style.display === 'inline') ? 'none' : 'inline';
+    }
+
+
+    // Listen for messages from the popup script
+    browser.runtime.onMessage.addListener((message) => {
+        if (message.command == 'toggle-helper')
+        {
+             needGrade.style.display = (needGrade.style.display === 'inline') ? 'none' : 'inline';
+        }
+
+
+
+        });
+
+
+
+
+
+
 
 
 

@@ -3,6 +3,7 @@
 
 const chkBox = document.getElementById('chkChart');
 const chkUseless = document.getElementById('chkUseless');
+const chkHelper = document.getElementById('chkHelper');
 /**
  * Sets chart checkBox
  * @param {*} e promise
@@ -16,6 +17,13 @@ function setChkState(e) {
  */
 function setChkUseless(e) {
     chkUseless.checked = e.chkUseless;
+}
+/**
+ * Sets helper checkBox
+ * @param {*} e promise
+ */
+function setChkHelper(e) {
+    chkHelper.checked = e.chkHelper;
 }
 /**
  * 
@@ -41,7 +49,7 @@ window.addEventListener('DOMContentLoaded', () => {
             sendPromise.then((e) => { console.log('successfuly written to ' + e); }, error);
         }
 
-        // Send a message to the content script to toggle the chart
+
         browser.tabs.query({ active: true, currentWindow: true })
             .then((tabs) => {
                 browser.tabs.sendMessage(tabs[0].id, {
@@ -64,11 +72,33 @@ window.addEventListener('DOMContentLoaded', () => {
             sendPromise.then((e) => { console.log('successfuly written to ' + e); }, error);
         }
 
-        // Send a message to the content script to toggle the chart
+
         browser.tabs.query({ active: true, currentWindow: true })
             .then((tabs) => {
                 browser.tabs.sendMessage(tabs[0].id, {
                     command: 'toggle-useless'
+                });
+            });
+    });
+
+    sendPromise = browser.storage.sync.get('chkHelper');
+    sendPromise.then(setChkHelper, error);
+
+    chkHelper.addEventListener('change', () => {
+
+        if (chkHelper.checked) {
+            let sendPromise = browser.storage.sync.set({ 'chkHelper': true });
+            sendPromise.then((e) => { console.log('successfuly written to ' + e); }, error);
+        }
+        else {
+            let sendPromise = browser.storage.sync.set({ 'chkHelper': false });
+            sendPromise.then((e) => { console.log('successfuly written to ' + e); }, error);
+        }
+
+        browser.tabs.query({ active: true, currentWindow: true })
+            .then((tabs) => {
+                browser.tabs.sendMessage(tabs[0].id, {
+                    command: 'toggle-helper'
                 });
             });
     });
