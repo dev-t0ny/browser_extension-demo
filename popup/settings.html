@@ -10,13 +10,25 @@
     <h1 class="text-center">Omnivox Enhancer</h1>
     <fieldset class="p-2">
         <legend>Preferences</legend>
-        <section>
+        <section data-bs-theme="dark">
             <p class="m-0 p-0 lead">Lea</p>
-            <input type="checkbox" id="chkChart" name="chkChart" checked>
-            <label for="chkChart">Toggle the grading chart 📊</label>
+            <div class="input-group"></div>
+            <input type="checkbox" id="chkChart" name="chkChart" checked class="form-check-input">
+            <label for="chkChart" class="form-check-label">Toggle the grading chart 📊</label>
             <br>
-            <input type="checkbox" id="chkUseless" name="chkUseless" checked>
-            <label for="chkUseless">Toggle side sections 🎭</label>
+            <input type="checkbox" id="chkUseless" name="chkUseless" checked class="form-check-input">
+            <label for="chkUseless" class="form-check-label">Toggle side sections 🎭</label>
+            <br>
+
+            <div class="input-group mt-3 mb-3" >
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Toggles grade faker" id="chkGradeFaker" name="chkGradeFaker">
+                  <label for="chkGradeFaker" class="form-check-label">&nbsp; Toggle grade faker</label>
+                </div>
+                <input type="number" class="form-control" aria-label="Desired grade">
+              </div>    
+              
+
         </section>
 
     </fieldset>
