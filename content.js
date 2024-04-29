@@ -12,7 +12,10 @@ else if (document.getElementsByClassName('titrePageLea')[0])
     leaClassGradeHandler();
 }
 
-
+/**
+ * Handles Lea's landing page
+ * @param {*} secCentre Section
+ */
 function leaLandingHandler(secCentre) {
     const messyBr = document.getElementsByTagName('br');
     const brArray = Array.from(messyBr);  // Convert the live HTMLCollection to a static array
@@ -278,7 +281,9 @@ function leaLandingHandler(secCentre) {
     });
 }
 
-
+/**
+ * Handle's lea when clicking on a specific class
+ */
 function leaClassGradeHandler()
 {
 
@@ -289,8 +294,8 @@ function leaClassGradeHandler()
     needGrade.textContent = '*Il te faut encore au moins ' + (60 - parseInt(grades[1]).toFixed(2)).toString() + ' points pour passer le cours*';
     needGrade.style.backgroundColor = '#FDDB8E';
     needGrade.style.color = '#333333';
-    needGrade.style.margin = '1rem'
-    needGrade.style.marginLeft = '10rem'
+    needGrade.style.margin = '1rem';
+    needGrade.style.marginLeft = '10rem';
     
     console.log(needGrade);
     document.querySelector('.tb-sommaire').appendChild(needGrade);
