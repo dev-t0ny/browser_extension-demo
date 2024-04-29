@@ -286,19 +286,28 @@ function leaLandingHandler(secCentre) {
  */
 function leaClassGradeHandler()
 {
-
-    const currentGrade = document.querySelector('.tb-sommaire').textContent.substring(39,46);
+    const gradeTable = document.querySelector('.tb-sommaire');
+    const currentGrade = gradeTable.textContent.substring(39,46);
     const needGrade = document.createElement('p');
     let regex = /(\d+(\.\d+)?)\/(\d+(\.\d+)?)/;
-    let grades = currentGrade.match(regex);
-    needGrade.textContent = '*Il te faut encore au moins ' + (60 - parseInt(grades[1]).toFixed(2)).toString() + ' points pour passer le cours*';
+    let grades = parseInt(currentGrade.match(regex)[1]).toFixed(2);
+    const row = document.createElement('td');
+    if (grades < 60)
+    {
+        needGrade.textContent = '*Il vous faut encore au moins ' + (60 - grades.toString() + ' points pour passer le cours*');
+    }
+    else
+    {
+        needGrade.textContent = 'Vous passez déja ce cours!';
+    }
+    
     needGrade.style.backgroundColor = '#FDDB8E';
     needGrade.style.color = '#333333';
-    needGrade.style.margin = '1rem';
     needGrade.style.marginLeft = '10rem';
     
-    console.log(needGrade);
-    document.querySelector('.tb-sommaire').appendChild(needGrade);
+
+    row.appendChild(needGrade);
+    gradeTable.firstChild.children[2].firstChild.appendChild(row);
 
 
 
