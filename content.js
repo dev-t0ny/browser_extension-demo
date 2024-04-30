@@ -1,14 +1,13 @@
 'use strict';
 /* global browser */
 let secCentre;
-
+let gradeHelpers = [];
 //checks if this is lea's landing page
 if (document.getElementsByClassName('section-centre')[0]) {
     secCentre = document.getElementsByClassName('section-centre')[0];
     leaLandingHandler(secCentre);
 }
-else if (document.getElementsByClassName('titrePageLea')[0])
-{
+else if (document.getElementsByClassName('titrePageLea')[0]) {
     leaClassGradeHandler();
 }
 
@@ -127,7 +126,7 @@ function leaLandingHandler(secCentre) {
      * @param {*} e promis
      */
     function setVisibility(e) {
-        console.log(e);
+
         if (e.chkState) {
             canvaElement.style.display = 'inline';
 
@@ -238,7 +237,7 @@ function leaLandingHandler(secCentre) {
             if (rightSec[0].style.display === 'inline') {
 
                 document.querySelector('.id-service_CVIP').style.display = 'inline-block';
-                
+
 
 
                 cards.style.marginLeft = '2rem';
@@ -285,62 +284,138 @@ function leaLandingHandler(secCentre) {
 /**
  * Handle's lea when clicking on a specific class
  */
-function leaClassGradeHandler()
-{
+function leaClassGradeHandler() {
     const gradeTable = document.querySelector('.tb-sommaire');
-    const currentGrade = gradeTable.textContent.substring(39,46);
+    const currentGrade = gradeTable.textContent.substring(39, 46);
     const needGrade = document.createElement('p');
     let regex = /(\d+(\.\d+)?)\/(\d+(\.\d+)?)/;
-    let grades = parseInt(currentGrade.match(regex)[1]).toFixed(2);
+    let grades = currentGrade.match(regex)[1];
+
     const row = document.createElement('td');
-    if (grades < 60)
-    {
-        needGrade.textContent = '*Il vous faut encore au moins ' + (60 - grades.toString() + ' points pour passer le cours*');
+
+    let result = 60 - grades;
+    result = parseFloat(result.toFixed(2));
+    if (grades < 60) {
+        needGrade.textContent = '*Il vous faut encore au moins ' + (result + ' points pour passer le cours*');
+        //STARTS HELPER ALGO
+        calculateSPG(parseFloat(grades));
     }
-    else
-    {
+    else {
         needGrade.textContent = 'Vous passez déja ce cours!';
     }
-    
+
     needGrade.style.backgroundColor = '#FDDB8E';
     needGrade.style.color = '#333333';
     needGrade.style.marginLeft = '10rem';
-    
+
 
     row.appendChild(needGrade);
     gradeTable.firstChild.children[2].firstChild.appendChild(row);
-    needGrade.style.display = 'none';
 
+
+    /**
+     * Sets grade helper visibility
+     */
+    function setVisibility(e) {
+        if (e.chkHelper)
+        {
+            needGrade.style.display = 'inline'
+            for (let gradeHelper of gradeHelpers)
+            {
+                gradeHelper.style.display = 'block';
+            }
+        }
+        else
+        {
+            needGrade.style.display = 'none'
+            for (let gradeHelper of gradeHelpers)
+            {
+                gradeHelper.style.display = 'none';
+            }
+        }
+
+
+    }
 
     //browser storage check
     let prendreState = browser.storage.sync.get('chkHelper');
     prendreState.then(setVisibility, (e) => { console.log(e); });
 
-    /**
-     * Sets grade helper visibility
-     */
-    function setVisibility(){
-        needGrade.style.display = (needGrade.style.display === 'inline') ? 'none' : 'inline';
-    }
+
 
 
     // Listen for messages from the popup script
     browser.runtime.onMessage.addListener((message) => {
-        if (message.command == 'toggle-helper')
-        {
-             needGrade.style.display = (needGrade.style.display === 'inline') ? 'none' : 'inline';
+        if (message.command == 'toggle-helper') {
+            needGrade.style.display = (needGrade.style.display === 'inline') ? 'none' : 'inline';
+            for (let gradeHelper of gradeHelpers)
+            {
+                gradeHelper.style.display = (gradeHelper.style.display === 'block') ? 'none' : 'block';
+            }
         }
 
 
 
-        });
+    });
+   
+
+    /**
+     * Smallest possible grade
+    */
+    function calculateSPG(currentGrade) {
+
+        const gradeTable = document.querySelector('.table-notes');
+        const examsAndHomeworks = gradeTable.querySelectorAll('tr[bgcolor="\\#EEEEEE"]');
+
+        let missingGrades = [];
+
+        const DESIREDGRADE = 60;
+
+        for (let row of examsAndHomeworks) {
+            if (row.textContent.includes('--')) {
+                let regex = /--(\d+(\.\d+)?)%/;
+                let grading = row.textContent.match(regex);
+                missingGrades.push({ htmlContent: row, grading: parseFloat(grading[1]) });
+            }
+        }
+
+        let shouldGet = calculateRequiredScoresForExams(missingGrades, currentGrade, DESIREDGRADE);
+        for (let row in missingGrades) {
+
+            // Create the paragraph element
+            const advice = document.createElement('p');
+
+            // Create the bold element
+            const result = document.createElement('b');
+
+            const resultOutOfExam = document.createElement('b');
+            resultOutOfExam.textContent = shouldGet[row].toFixed(2);
+
+            resultOutOfExam.style.fontWeight = '600';
+            result.style.fontWeight = '600';
+            // Calculate the percentage and set it as the textContent of the bold element
+            result.textContent = ((shouldGet[row] * 100) / missingGrades[row].grading).toFixed(2) + '%';
+
+            // Start forming the complete text, inserting the bold part where needed
+            advice.appendChild(document.createTextNode('Tu dois avoir minimalement '));
+            advice.appendChild(result);
+            advice.appendChild(document.createTextNode(' à cet examen. ('));
+            advice.appendChild(resultOutOfExam);
+            advice.appendChild(document.createTextNode('/' + missingGrades[row].grading + ')'));
 
 
+            missingGrades[row].htmlContent.querySelector('td[bgcolor="\\#EEEEEE"]').appendChild(advice);
+            gradeHelpers.push(advice);
+        }
 
+        function calculateRequiredScoresForExams(exams, currentGrade, desiredGrade) {
+            const neededGrade = desiredGrade - currentGrade;
+            const totalWeight = exams.reduce((acc, exam) => acc + exam.grading, 0);
 
-
-
-
-
-
+            return exams.map(exam => {
+                return (exam.grading / totalWeight) * neededGrade;
+            });
+        }
+    }
 }
+
