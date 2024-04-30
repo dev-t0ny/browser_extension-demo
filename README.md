@@ -9,7 +9,7 @@ This browser extension ports some Omnivox Mobile exclusive features.
 - [X] Distracting element remover
 - [ ] Grade faker 
 - [ ] Mio enhancements
-- [ ] Grade calculator
+- [X] Grade calculator
 
 
 ## Screenshots
