@@ -315,11 +315,12 @@ function leaClassGradeHandler() {
 
     /**
      * Sets grade helper visibility
+     * @param {*} e Event
      */
     function setVisibility(e) {
         if (e.chkHelper)
         {
-            needGrade.style.display = 'inline'
+            needGrade.style.display = 'inline';
             for (let gradeHelper of gradeHelpers)
             {
                 gradeHelper.style.display = 'block';
@@ -327,7 +328,7 @@ function leaClassGradeHandler() {
         }
         else
         {
-            needGrade.style.display = 'none'
+            needGrade.style.display = 'none';
             for (let gradeHelper of gradeHelpers)
             {
                 gradeHelper.style.display = 'none';
@@ -360,8 +361,9 @@ function leaClassGradeHandler() {
    
 
     /**
-     * Smallest possible grade
-    */
+     * 
+     * @param {*} currentGrade C
+     */
     function calculateSPG(currentGrade) {
 
         const gradeTable = document.querySelector('.table-notes');
@@ -407,7 +409,13 @@ function leaClassGradeHandler() {
             missingGrades[row].htmlContent.querySelector('td[bgcolor="\\#EEEEEE"]').appendChild(advice);
             gradeHelpers.push(advice);
         }
-
+        /**
+         * Calculates the required score for every exams
+         * @param {*} exams List of exams
+         * @param {*} currentGrade Current grade
+         * @param {*} desiredGrade Desired grade
+         * @returns List containing required grades
+         */
         function calculateRequiredScoresForExams(exams, currentGrade, desiredGrade) {
             const neededGrade = desiredGrade - currentGrade;
             const totalWeight = exams.reduce((acc, exam) => acc + exam.grading, 0);
