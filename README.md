@@ -9,11 +9,11 @@ This browser extension ports some Omnivox Mobile exclusive features.
 - [ ] Useful informations in footer
 - [ ] Custom themes
 - [X] Distracting element remover
-![image](https://github.com/dev-t0ny/omnivox-enhancer/assets/79669121/101d95b2-4a67-4c94-ae53-184c72c2d21b)
+![omnivox-enhancerLAYOUT](https://github.com/dev-t0ny/omnivox-enhancer/assets/79669121/df4d2d7d-f455-49c8-8795-5152d6cb08d2)
 - [ ] Grade faker 
 - [ ] Mio enhancements
 - [X] Grade calculator
-![omnivox-enhancerLAYOUT](https://github.com/dev-t0ny/omnivox-enhancer/assets/79669121/df4d2d7d-f455-49c8-8795-5152d6cb08d2)
+![image](https://github.com/dev-t0ny/omnivox-enhancer/assets/79669121/101d95b2-4a67-4c94-ae53-184c72c2d21b)
 
 
 
