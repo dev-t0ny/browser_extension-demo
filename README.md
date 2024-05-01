@@ -4,7 +4,8 @@ This browser extension ports some Omnivox Mobile exclusive features.
 ## Features
 
 - [X] Grading chart
-![omnivox-enhancerCHART](https://github.com/dev-t0ny/omnivox-enhancer/assets/79669121/689c816d-ef99-483a-aa4d-61250fa537b0)
+![omnivox-enhancerCHART](https://github.com/dev-t0ny/omnivox-enhancer/assets/79669121/1dd69007-6ede-4c70-ad05-467b3c03be6e)
+
 - [ ] Useful informations in footer
 - [ ] Custom themes
 - [X] Distracting element remover
