@@ -3,19 +3,24 @@
 This browser extension ports some Omnivox Mobile exclusive features.
 ## Features
 
-- [X] Grading chart 
+- [X] Grading chart
+![omnivox-enhancerCHART](https://github.com/dev-t0ny/omnivox-enhancer/assets/79669121/1dd69007-6ede-4c70-ad05-467b3c03be6e)
+
 - [ ] Useful informations in footer
 - [ ] Custom themes
 - [X] Distracting element remover
+![omnivox-enhancerLAYOUT](https://github.com/dev-t0ny/omnivox-enhancer/assets/79669121/df4d2d7d-f455-49c8-8795-5152d6cb08d2)
 - [ ] Grade faker 
 - [ ] Mio enhancements
 - [X] Grade calculator
+![image](https://github.com/dev-t0ny/omnivox-enhancer/assets/79669121/101d95b2-4a67-4c94-ae53-184c72c2d21b)
+
 
 
 ## Screenshots
+![image](https://github.com/dev-t0ny/omnivox-enhancer/assets/79669121/4e8624d3-49a9-44c7-8475-4ca4a4301c98)
 
-![App Screenshot](https://github.com/dev-t0ny/omnivox-enhancer/assets/79669121/a012841e-c2bb-4f71-b155-1d9d533eca55)
-![App Screenshot](https://github.com/dev-t0ny/omnivox-enhancer/assets/79669121/b452b5cc-f9b4-41bc-819c-e0a090ce4b7a)
+
 
 
 
