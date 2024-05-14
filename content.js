@@ -380,7 +380,7 @@ function leaClassGradeHandler() {
                 missingGrades.push({ htmlContent: row, grading: parseFloat(grading[1]) });
             }
         }
-
+        
         let shouldGet = calculateRequiredScoresForExams(missingGrades, currentGrade, DESIREDGRADE);
         for (let row in missingGrades) {
 
@@ -426,4 +426,3 @@ function leaClassGradeHandler() {
         }
     }
 }
-
